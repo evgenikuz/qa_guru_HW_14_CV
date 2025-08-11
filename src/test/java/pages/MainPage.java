@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -21,12 +22,13 @@ public class MainPage {
                             cartIcon = $(".js-delivery__basketHeader");
     private ElementsCollection button = $$(".VV_Button"),
                                 promoHeader = $$("HeaderMainDMenuContentItem__Title");
+    @Step("Открываем главную страницу")
     public MainPage openPage() {
         open("/");
         logoText.shouldHave(text("ВкусВилл"));
         return this;
     }
-
+    @Step("Ищем в поисковой строке значение и проверяем результат")
     public MainPage searchCheck(String value) {
         searchInput.setValue(value).pressEnter();
         searchResult.shouldHave(text(value));
@@ -34,19 +36,20 @@ public class MainPage {
         return this;
     }
 
+    @Step("Кликаем по кнопке 'Хочу во ВкусВилл'")
     public MainPage jobButtonClick() {
         button.findBy(text("                                 Хочу во ВкусВилл                             ")).click();
         webdriver().shouldHave(url("https://vkusvill.ru/job/"));
         return this;
     }
-
+    @Step("Наводим курсор на каталоги  проверяем выпадающее меню")
     public MainPage dropdownMenuCheck() {
         catalogueBatton.hover();
         dropdownMenu.shouldBe(visible);
         promoHeader.findBy(text("Акции"));
         return this;
     }
-
+    @Step("Проверяем добавление в корзину")
     public MainPage addToCart() {
         addToCartButton.click();
         addToCartButtonWithQuantity.shouldHave(text("1"));

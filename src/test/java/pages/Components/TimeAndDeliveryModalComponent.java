@@ -2,6 +2,7 @@ package pages.Components;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -20,7 +21,7 @@ public class TimeAndDeliveryModalComponent {
     private ElementsCollection button = $$(".VV_Button"),
             addressValues = $$(".VV_DMenuContentElement__LinkText");
 
-
+    @Step("Устанавливаем адрес доставки")
     public TimeAndDeliveryModalComponent setDeliveryAddress(String address) {
         chooseDeliveryTypeButton.click();
         addressModal.shouldBe(visible);
@@ -31,7 +32,7 @@ public class TimeAndDeliveryModalComponent {
         notificationModal.shouldBe(visible);
         return this;
     }
-
+    @Step("Устанавливаем время доставки")
     public TimeAndDeliveryModalComponent setDeliveryTime() {
         deliveryTimeModal.shouldBe(visible);
         chosenDeliveryTime.click();
