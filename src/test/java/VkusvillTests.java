@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import pages.CartPage;
 import pages.Components.ChatComponent;
 import pages.Components.TimeAndDeliveryModalComponent;
@@ -12,12 +14,15 @@ public class VkusvillTests extends TestBase {
     ChatComponent chatComponent = new ChatComponent();
     TimeAndDeliveryModalComponent timeAndDeliveryModalComponent = new TimeAndDeliveryModalComponent();
 
-    @Test
+    @ParameterizedTest(name = "По поиску {0} первая карточка имеет название товара {0}")
+    @ValueSource(strings = {
+            "Круассан", "Молоко", "Яйцо"
+    })
     @DisplayName("Проверка поиска")
     @Tag("Promo")
-    void searchTest() {
+    void searchTest(String searchQuery) {
         mainPage.openPage()
-                .searchCheck("Круассан");
+                .searchCheck(searchQuery);
     }
 
     @Test

@@ -43,6 +43,6 @@ tasks.withType(Test) {
 
 task promo_test(type: Test) {
     useJUnitPlatform {
-        includeTags("promo")
+        includeTags("Promo")
     }
 }
