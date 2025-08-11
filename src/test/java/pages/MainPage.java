@@ -19,7 +19,7 @@ public class MainPage {
                             addToCartButtonWithQuantity = $(".ProductCard__cartButton .CartButton__quantityInputFake"),
                             addToCartButtonPrice = $(".ProductCard__cartButton .js-delivery__product__totalprice"),
                             cardIconPrice = $(".js-delivery__basketHeader .js-delivery__basket--totals_products-price"),
-                            cartIcon = $(".js-delivery__basketHeader");
+                            cartIcon = $("._cart a");
     private ElementsCollection button = $$(".VV_Button"),
                                 promoHeader = $$("HeaderMainDMenuContentItem__Title");
     @Step("Открываем главную страницу")
