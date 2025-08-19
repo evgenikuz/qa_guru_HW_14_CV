@@ -1,7 +1,6 @@
-package pages.Components;
+package pages.components;
 
 import com.codeborne.selenide.SelenideElement;
-import pages.MainPage;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Condition.visible;

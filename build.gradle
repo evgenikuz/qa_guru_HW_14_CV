@@ -40,9 +40,3 @@ tasks.withType(Test) {
         }
     }
 }
-
-task promo_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("Promo")
-    }
-}
