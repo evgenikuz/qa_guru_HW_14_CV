@@ -20,14 +20,16 @@ public class VkusvillTests extends TestBase {
     @DisplayName("Проверка поиска")
     void searchTest(String searchQuery) {
         mainPage.openPage()
-                .searchCheck(searchQuery);
+                .search(searchQuery)
+                .searchResultCheck(searchQuery);
     }
 
     @Test
     @DisplayName("Проверка кнопки 'Хочу во ВкусВилл'")
     void jobButtonTest() {
         mainPage.openPage()
-                .jobButtonClick();
+                .jobButtonClick()
+                .jobButtonClickCheck();
     }
 
     @Test
@@ -43,6 +45,7 @@ public class VkusvillTests extends TestBase {
     @DisplayName("Проверка выпадающего меню каталога")
     void dropDownMenuTest() {
         mainPage.openPage()
+                .dropdownMenuCall()
                 .dropdownMenuCheck();
     }
 
@@ -50,7 +53,10 @@ public class VkusvillTests extends TestBase {
     @DisplayName("Проверка выбора адреса доставки")
     void deliveryTypeTest() {
         mainPage.openPage();
-        timeAndDeliveryModalComponent.setDeliveryAddress("Красная пл, д. 1")
+        timeAndDeliveryModalComponent.openChooseDeliveryTypeModal()
+                .clickAddNewAddress()
+                .setDeliveryAddress("Красная пл, д. 1")
+                .confirmAddress()
                 .setDeliveryTime();
     }
 
@@ -58,8 +64,11 @@ public class VkusvillTests extends TestBase {
     @DisplayName("Проверка корзины")
     void addToCartTest() {
         mainPage.openPage()
-                .searchCheck("Авокадо")
-                .addToCart();
+                .search("Авокадо")
+                .searchResultCheck("Авокадо")
+                .addToCart()
+                .addToCartResultCheck()
+                .clickOnCartIcon();
         cartPage.checkItemInCart("260", "Авокадо");
     }
 }

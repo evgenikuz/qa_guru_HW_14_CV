@@ -29,8 +29,13 @@ public class MainPage {
         return this;
     }
     @Step("Ищем в поисковой строке значение и проверяем результат")
-    public MainPage searchCheck(String value) {
+    public MainPage search(String value) {
         searchInput.setValue(value).pressEnter();
+        return this;
+    }
+
+    @Step("Проверяем результат поиска")
+    public MainPage searchResultCheck(String value) {
         searchResult.shouldHave(text(value));
         firstCardInSearch.shouldHave(attributeMatching("title", ".*" + value + ".*"));
         return this;
@@ -38,22 +43,44 @@ public class MainPage {
 
     @Step("Кликаем по кнопке 'Хочу во ВкусВилл'")
     public MainPage jobButtonClick() {
-        button.findBy(text("                                 Хочу во ВкусВилл                             ")).click();
+        button.findBy(text("Хочу во ВкусВилл")).click();
+        return this;
+    }
+
+    @Step("Проверяем открытие страницы вакансий")
+    public MainPage jobButtonClickCheck() {
         webdriver().shouldHave(url("https://vkusvill.ru/job/"));
         return this;
     }
-    @Step("Наводим курсор на каталоги  проверяем выпадающее меню")
-    public MainPage dropdownMenuCheck() {
+
+    @Step("Наводим курсор на каталоги")
+    public MainPage dropdownMenuCall() {
         catalogueBatton.hover();
+        return this;
+    }
+
+    @Step("Проверяем выпадающее меню")
+    public MainPage dropdownMenuCheck() {
         dropdownMenu.shouldBe(visible);
         promoHeader.findBy(text("Акции"));
         return this;
     }
+
     @Step("Проверяем добавление в корзину")
     public MainPage addToCart() {
         addToCartButton.click();
+        return this;
+    }
+
+    @Step("Проверяем добавление в корзину")
+    public MainPage addToCartResultCheck() {
         addToCartButtonWithQuantity.shouldHave(text("1"));
         addToCartButtonPrice.shouldHave(text(cardIconPrice.getText()));
+        return this;
+    }
+
+    @Step("Проверяем добавление в корзину")
+    public MainPage clickOnCartIcon() {
         cartIcon.click();
         return this;
     }
