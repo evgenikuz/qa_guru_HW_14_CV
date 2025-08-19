@@ -17,7 +17,9 @@ public class TestBase {
 
     @BeforeAll
     static void onSetUpConfigurations() {
-        Configuration.browserSize = "1920x1080";
+        Configuration.browserSize = System.getProperty("resolution", "1980x1080");
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserVersion = System.getProperty("version", "128.0");
         Configuration.baseUrl = "https://vkusvill.ru";
         Configuration.pageLoadStrategy = "eager";
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -26,7 +28,7 @@ public class TestBase {
                 "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = "https://user1:1234@" + System.getProperty("selenoid_url") + "/wd/hub";
     }
     @BeforeEach
     void beforeEachTest() {
