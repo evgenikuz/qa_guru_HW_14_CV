@@ -3,6 +3,9 @@ package pages;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import pages.components.ChatComponent;
+import pages.components.DeliveryModalComponent;
+import pages.components.TimeModalComponent;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -22,13 +25,18 @@ public class MainPage {
                             cartIcon = $("._cart a");
     private ElementsCollection button = $$(".VV_Button"),
                                 promoHeader = $$("HeaderMainDMenuContentItem__Title");
+
+    DeliveryModalComponent deliveryModalComponent = new DeliveryModalComponent();
+    TimeModalComponent timeModalComponent = new TimeModalComponent();
+    ChatComponent chatComponent = new ChatComponent();
+
     @Step("Открываем главную страницу")
     public MainPage openPage() {
         open("/");
         logoText.shouldHave(text("ВкусВилл"));
         return this;
     }
-    @Step("Ищем в поисковой строке значение и проверяем результат")
+    @Step("Ищем в поисковой строке значение")
     public MainPage search(String value) {
         searchInput.setValue(value).pressEnter();
         return this;
@@ -66,7 +74,7 @@ public class MainPage {
         return this;
     }
 
-    @Step("Проверяем добавление в корзину")
+    @Step("Добавляем товар в корзину")
     public MainPage addToCart() {
         addToCartButton.click();
         return this;
@@ -79,10 +87,63 @@ public class MainPage {
         return this;
     }
 
-    @Step("Проверяем добавление в корзину")
+    @Step("Кликаем по иконке корзины")
     public MainPage clickOnCartIcon() {
         cartIcon.click();
         return this;
     }
 
+    @Step("Открываем окно выбора способа доставки")
+    public MainPage openChooseDeliveryTypeModal() {
+        deliveryModalComponent.openChooseDeliveryTypeModal();
+        return this;
+    }
+
+    @Step("Клик по кнопке 'Добавить новый адрес'")
+    public MainPage clickAddNewAddress() {
+        deliveryModalComponent.clickAddNewAddress();
+        return this;
+    }
+
+    @Step("Устанавливаем адрес доставки")
+    public MainPage setDeliveryAddress(String address) {
+        deliveryModalComponent.setDeliveryAddress(address);
+        return this;
+    }
+
+    @Step("Подтверждаем адрес доставки")
+    public MainPage confirmAddress() {
+        deliveryModalComponent.confirmAddress();
+        return this;
+    }
+
+    @Step("Устанавливаем время доставки")
+    public MainPage setDeliveryTime() {
+        timeModalComponent.setDeliveryTime();
+        return this;
+    }
+
+    @Step("Кликаем по иконке чата в правом нижнем углу")
+    public MainPage openChat() {
+        chatComponent.openChat();
+        return this;
+    }
+
+    @Step("Проверяем открытие модального окна чата")
+    public MainPage checkChatModal() {
+        chatComponent.checkChatModal();
+        return this;
+    }
+
+    @Step("Вводим текст сообщения в поле ввода в чате")
+    public MainPage insertValueCheck(String message) {
+        chatComponent.insertValueCheck(message);
+        return this;
+    }
+
+    @Step("Закрываем чат")
+    public MainPage closeChat() {
+        chatComponent.closeChat();
+        return this;
+    }
 }

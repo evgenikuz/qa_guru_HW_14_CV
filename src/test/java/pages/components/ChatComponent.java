@@ -18,6 +18,10 @@ public class ChatComponent {
 
     public ChatComponent openChat() {
         chatButton.click();
+        return this;
+    }
+
+    public ChatComponent checkChatModal() {
         chatModal.shouldBe(visible);
         chatHeader.shouldHave(text("Чат поддержки"));
         chatAddFileButton.shouldBe(visible);

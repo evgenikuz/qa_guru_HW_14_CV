@@ -3,15 +3,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import pages.CartPage;
-import pages.components.ChatComponent;
-import pages.components.TimeAndDeliveryModalComponent;
 import pages.MainPage;
 
 public class VkusvillTests extends TestBase {
     MainPage mainPage = new MainPage();
     CartPage cartPage = new CartPage();
-    ChatComponent chatComponent = new ChatComponent();
-    TimeAndDeliveryModalComponent timeAndDeliveryModalComponent = new TimeAndDeliveryModalComponent();
+
 
     @ParameterizedTest(name = "По поиску {0} первая карточка имеет название товара {0}")
     @ValueSource(strings = {
@@ -35,8 +32,9 @@ public class VkusvillTests extends TestBase {
     @Test
     @DisplayName("Проверка чата")
     void chatTest() {
-        mainPage.openPage();
-        chatComponent.openChat()
+        mainPage.openPage()
+                .openChat()
+                .checkChatModal()
                 .insertValueCheck("Добрый день!")
                 .closeChat();
     }
@@ -51,9 +49,9 @@ public class VkusvillTests extends TestBase {
 
     @Test
     @DisplayName("Проверка выбора адреса доставки")
-    void deliveryTypeTest() {
-        mainPage.openPage();
-        timeAndDeliveryModalComponent.openChooseDeliveryTypeModal()
+    void settingDeliveryTypeAndDateTest() {
+        mainPage.openPage()
+                .openChooseDeliveryTypeModal()
                 .clickAddNewAddress()
                 .setDeliveryAddress("Красная пл, д. 1")
                 .confirmAddress()
