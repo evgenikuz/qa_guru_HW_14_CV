@@ -62,20 +62,20 @@ clean test
 
 ## <img src="imgForRM/icons//Jenkins.svg" title="Jenkins" width="4%"/> Сборка в Jenkins
 <p align="center">
-<img title="Jenkins Build" src="imgForRM/screenshots/JenkinsBuild.png">
+<img title="Jenkins Build" src="imgForRM/screenshots/Jenkins.png">
 </p>
 
-## <img src="imgForRM/icons//Allure_Report.svg" title="Allure Report" width="4%"/> Пример Allure-отчета
+## <img src="imgForRM/icons/Allure_Report.svg" title="Allure Report" width="4%"/> Пример Allure-отчета
 ### Overview
 
 <p align="center">
-<img title="Allure Overview" src="imgForRM/screenshots/allureReport.png">
+<img title="Allure Overview" src="imgForRM/screenshots/Allure.png">
 </p>
 
 ### Результат выполнения теста
 
 <p align="center">
-<img title="Test Results in Alure" src="imgForRM/screenshots/ResultTest.png">
+<img title="Test Results in Alure" src="imgForRM/screenshots/AllureResults.png">
 </p>
 
 ## <img width="4%" style="vertical-align:middle" title="Telegram" src="imgForRM/icons/Telegram.svg"> Уведомления в Telegram с использованием бота
